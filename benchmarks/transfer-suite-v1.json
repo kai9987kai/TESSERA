@@ -1,0 +1,76 @@
+{
+  "suite_id": "tessera-composition-holdout-v1",
+  "description": "Frozen structurally distinct task set; targets are excluded from acquisition and use the same 4-bit primitive DSL.",
+  "input_domain": {
+    "variables": [
+      "x",
+      "y"
+    ],
+    "values": "unsigned 4-bit integers 0..15",
+    "pair_count": 256
+  },
+  "transfer_protocol": {
+    "examples": "seeded sample without replacement per paired seed/task",
+    "search": "fresh matched population; same population-by-generation slots across arms",
+    "vocabulary": "freeze active opcodes and snippets learned during acquisition; no publication or expiry",
+    "score": "exact fraction over all 256 input pairs after selection on sampled examples"
+  },
+  "tasks": [
+    {
+      "id": "H-01",
+      "family": "masked-rotate",
+      "label": "Masked rotate",
+      "target": "xor(and(x,5),ror(y))",
+      "signature": "08192a3b4c5d6e7f19083b2a5d4c7f6e08192a3b4c5d6e7f19083b2a5d4c7f6e4c5d6e7f08192a3b5d4c7f6e19083b2a4c5d6e7f08192a3b5d4c7f6e19083b2a08192a3b4c5d6e7f19083b2a5d4c7f6e08192a3b4c5d6e7f19083b2a5d4c7f6e4c5d6e7f08192a3b5d4c7f6e19083b2a4c5d6e7f08192a3b5d4c7f6e19083b2a"
+    },
+    {
+      "id": "H-02",
+      "family": "reverse-mask",
+      "label": "Reverse mask",
+      "target": "add(ror(x),and(y,C))",
+      "signature": "000044448888cccc8888cccc00004444111155559999dddd9999dddd1111555522226666aaaaeeeeaaaaeeee2222666633337777bbbbffffbbbbffff3333777744448888cccc0000cccc00004444888855559999dddd1111dddd1111555599996666aaaaeeee2222eeee22226666aaaa7777bbbbffff3333ffff33337777bbbb"
+    },
+    {
+      "id": "H-03",
+      "family": "nested-complement",
+      "label": "Nested complement",
+      "target": "not(or(xor(x,3),y))",
+      "signature": "cccc888844440000dcdc989854541010eeccaa8866442200fedcba987654321088888888000000009898989810101010aa88aa8822002200ba98ba983210321044440000444400005454101054541010664422006644220076543210765432100000000000000000101010101010101022002200220022003210321032103210"
+    },
+    {
+      "id": "H-04",
+      "family": "rotated-subtract",
+      "label": "Rotated subtract",
+      "target": "sub(rol(and(x,A)),xor(y,6))",
+      "signature": "a9cbed0f21436587a9cbed0f21436587ed0f21436587a9cbed0f21436587a9cba9cbed0f21436587a9cbed0f21436587ed0f21436587a9cbed0f21436587a9cbbadcfe1032547698badcfe1032547698fe1032547698badcfe1032547698badcbadcfe1032547698badcfe1032547698fe1032547698badcfe1032547698badc"
+    },
+    {
+      "id": "H-05",
+      "family": "complement-gate",
+      "label": "Complement gate",
+      "target": "or(add(x,7),ror(not(y)))",
+      "signature": "f7f7f7f7f7f7f7f7ffeeddccbbaa9988ffffddddbbbb9999ffeeffeebbaabbaaffffffffbbbbbbbbffeeddccffeeddccffffddddffffddddffeeffeeffeeffeefffffffffffffffff7e6d5c4b3a29180f7f7d5d5b3b39191f7e6f7e6b3a2b3a2f7f7f7f7b3b3b3b3f7e6d5c4f7e6d5c4f7f7d5d5f7f7d5d5f7e6f7e6f7e6f7e6"
+    },
+    {
+      "id": "H-06",
+      "family": "folded-xor",
+      "label": "Folded xor",
+      "target": "and(sub(y,x),xor(rol(y),9))",
+      "signature": "01030147888a004690121056088a00468b010345028802449ad012140248020489cf01030046000298de1012004600028bcd0301024402009a9c125002040240898b014700020046189a105680020046038903458a000244125812148ac002040147010388ce00021056101288ce0002034503018acc0200121412508a8c0240"
+    },
+    {
+      "id": "H-07",
+      "family": "nested-carry",
+      "label": "Nested carry",
+      "target": "xor(or(ror(x),3),add(and(y,C),x))",
+      "signature": "33337777bbbbffffaaaaeeee22226666111155559999dddd8888cccc000044447777bbbbffff3333eeee22226666aaaa55559999dddd1111cccc000044448888ffffbbbb7777333366662222eeeeaaaadddd99995555111144440000cccc8888bbbb77773333ffff2222eeeeaaaa6666999955551111dddd0000cccc88884444"
+    },
+    {
+      "id": "H-08",
+      "family": "counter-rotate",
+      "label": "Counter rotate",
+      "target": "add(not(rol(xor(x,y))),and(ror(y),A))",
+      "signature": "f5b19f5be4a08e4ad793713dc682602cb1f55b9fa0e44a8e93d73d7182c62c607d3917d36c2806c25f1bf9b54e0ae8a4397dd317286cc2061b5fb5f90a4ea4e8e4a08e4af5b19f5bc682602cd793713da0e44a8eb1f55b9f82c62c6093d73d716c2806c27d3917d34e0ae8a45f1bf9b5286cc206397dd3170a4ea4e81b5fb5f9"
+    }
+  ]
+}

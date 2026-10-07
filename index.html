@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101716">
+  <meta name="description" content="A deterministic local laboratory for evolving and testing shared computational instructions.">
+  <title>Tessera Lab — Opcode Commons</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#study" aria-label="Tessera Lab home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span><strong>TESSERA</strong><small>OPCODE COMMONS LAB</small></span>
+      </a>
+      <div class="topbar-meta">
+        <span class="local-badge"><span class="live-dot"></span> LOCAL / SEEDED</span>
+        <span class="version-tag">ENGINE 0.2.0</span>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar">
+        <div class="sidebar-label">WORKSPACE</div>
+        <nav class="side-nav" aria-label="Workspace views">
+          <button class="nav-item active" data-view="study" aria-current="page">
+            <span class="nav-icon">01</span><span>Study run</span>
+          </button>
+          <button class="nav-item" data-view="commons">
+            <span class="nav-icon">02</span><span>Opcode commons</span>
+          </button>
+          <button class="nav-item" data-view="ledger">
+            <span class="nav-icon">03</span><span>Run ledger</span>
+          </button>
+          <button class="nav-item" data-view="protocol">
+            <span class="nav-icon">04</span><span>Protocol</span>
+          </button>
+        </nav>
+        <div class="sidebar-foot">
+          <div class="sidebar-label">CURRENT QUESTION</div>
+          <p>When does a discovered function become a useful shared instruction?</p>
+          <div class="side-rule"></div>
+          <span class="sidebar-footnote">No model downloads. No remote calls. Your run stays in this browser.</span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="view active" id="view-study" aria-labelledby="study-title">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-mark"></span> EXPERIMENT / 01</div>
+              <h1 id="study-title">Can a population invent a shared language?</h1>
+              <p class="lede">Small programs evolve against a sequence of exact transformation tasks. Compare what changes when useful code becomes a public instruction.</p>
+            </div>
+            <div class="heading-index"><span>RESEARCH NOTE</span><strong>TC—001</strong></div>
+          </div>
+
+          <div class="study-layout">
+            <aside class="control-column">
+              <div class="panel control-panel">
+                <div class="panel-head">
+                  <div><span class="panel-kicker">SETUP</span><h2>Study parameters</h2></div>
+                  <span class="panel-number">A</span>
+                </div>
+                <form id="study-form">
+                  <label class="field">
+                    <span>Paired seeds <em>2–32</em></span>
+                    <input id="replicates" type="number" min="2" max="32" value="6">
+                  </label>
+                  <label class="field">
+                    <span>Population size <em>16–120</em></span>
+                    <input id="population" type="number" min="16" max="120" value="32">
+                  </label>
+                  <label class="field">
+                    <span>Generations / task <em>4–80</em></span>
+                    <input id="generations" type="number" min="4" max="80" value="18">
+                  </label>
+                  <label class="field">
+                    <span>Training examples <em>8–128</em></span>
+                    <input id="examples" type="number" min="8" max="128" value="24">
+                  </label>
+                  <label class="field">
+                    <span>Starting seed</span>
+                    <input id="start-seed" type="number" min="0" max="4294967295" value="41721">
+                  </label>
+                  <div class="arm-picker">
+                    <div class="field-title">Comparison arms <em>select 2 or more</em></div>
+                    <label class="check-row"><input type="checkbox" value="closed" checked><span class="arm-swatch swatch-closed"></span><span>Closed grammar</span></label>
+                    <label class="check-row"><input type="checkbox" value="fragments" checked><span class="arm-swatch swatch-fragments"></span><span>Snippet relay</span></label>
+                    <label class="check-row"><input type="checkbox" value="openOpcodes" checked><span class="arm-swatch swatch-open"></span><span>One-lineage opcodes</span></label>
+                    <label class="check-row"><input type="checkbox" value="ratifiedOpcodes" checked><span class="arm-swatch swatch-ratified"></span><span>Ratified opcode commons</span></label>
+                  </div>
+                  <div id="form-error" class="form-error" role="alert" hidden></div>
+                  <button class="primary-button" id="run-button" type="submit">
+                    <span>Run paired study</span><span class="button-arrow" aria-hidden="true">↗</span>
+                  </button>
+                  <button class="quiet-button" id="quick-button" type="button">Run a quick 2-seed pilot</button>
+                </form>
+                <div class="progress-wrap" id="progress-wrap" hidden>
+                  <div class="progress-copy"><span id="progress-label">Preparing matched worlds…</span><span id="progress-count">0 / 0</span></div>
+                  <div class="progress-track"><span id="progress-bar"></span></div>
+                </div>
+                <div class="local-note"><span class="lock-mark" aria-hidden="true">⌑</span><span>Runs execute locally. Export receipts as JSON or CSV.</span></div>
+              </div>
+              <div class="question-card">
+                <span class="question-card-index">THESIS / 01</span>
+                <p id="hypothesis-text">An independently ratified vocabulary may improve equal-budget search on unseen task compositions without collapsing diversity.</p>
+                <a href="#protocol" class="text-link" data-open-view="protocol">Read the protocol <span>→</span></a>
+              </div>
+            </aside>
+
+            <div class="output-column">
+              <div class="results-bar">
+                <div><span class="panel-kicker">OBSERVATION BAY</span><h2>Comparative readout</h2></div>
+                <div class="export-actions" id="export-actions" hidden>
+                  <button class="secondary-button" id="export-json" type="button">Export JSON</button>
+                  <button class="secondary-button" id="export-csv" type="button">Export CSV</button>
+                </div>
+              </div>
+              <div class="empty-state" id="empty-state">
+                <div class="empty-graphic" aria-hidden="true">
+                  <div class="empty-node node-a">x</div><div class="empty-node node-b">y</div>
+                  <div class="empty-wire wire-a"></div><div class="empty-wire wire-b"></div>
+                  <div class="empty-gate">?</div><div class="empty-wire wire-c"></div>
+                  <div class="empty-node node-out">f</div>
+                </div>
+                <span class="empty-kicker">AWAITING FIRST RUN</span>
+                <h3>A language is an experiment.</h3>
+                <p>Learn a vocabulary on one task set, freeze it, then compare fresh matched searches on compositions kept out of acquisition.</p>
+                <div class="empty-meta"><span>4 INSTRUCTION POLICIES</span><span>5 ACQUISITION TASKS</span><span>8 FROZEN COMPOSITIONS</span></div>
+              </div>
+              <div class="study-output" id="study-output" hidden>
+                <div class="study-receipt" id="study-receipt"></div>
+                <div class="metric-grid" id="metric-grid"></div>
+                <div class="chart-card panel">
+                  <div class="chart-head">
+                    <div><span class="panel-kicker">ACQUISITION SPLIT</span><h3>In-domain exact accuracy</h3></div>
+                    <span class="chart-unit">0—100% / task epoch</span>
+                  </div>
+                  <div id="accuracy-chart" class="chart-area" role="img" aria-label="Line chart of exact accuracy on acquisition task families"></div>
+                  <div class="chart-legend" id="chart-legend"></div>
+                </div>
+                <div class="chart-card panel">
+                  <div class="chart-head">
+                    <div><span class="panel-kicker">FROZEN COMPOSITION SPLIT</span><h3>Few-shot exact accuracy on unseen structures</h3></div>
+                    <span class="chart-unit">0—100% / held-out task</span>
+                  </div>
+                  <div id="transfer-chart" class="chart-area" role="img" aria-label="Line chart of exact accuracy on eight frozen unseen task compositions"></div>
+                  <div class="chart-legend" aria-label="Arm colors match the acquisition chart"></div>
+                </div>
+                <div class="lower-grid">
+                  <div class="panel compact-chart">
+                    <div class="chart-head"><div><span class="panel-kicker">ACQUISITION COST</span><h3>Program size</h3></div><span class="chart-unit">nodes / lower is smaller</span></div>
+                    <div id="size-chart" class="mini-chart" role="img" aria-label="Line chart of effective program size"></div>
+                  </div>
+                  <div class="panel comparison-panel">
+                    <div class="chart-head"><div><span class="panel-kicker">IN-DOMAIN CONTRAST</span><h3>Against closed grammar</h3></div><span class="chart-unit">percentage points</span></div>
+                    <div id="comparison-list"></div>
+                    <p class="subtle-note">Intervals resample these paired simulated seeds. They are descriptive, not biological or population-level confidence intervals.</p>
+                  </div>
+                  <div class="panel comparison-panel">
+                    <div class="chart-head"><div><span class="panel-kicker">COMPOSITION CONTRAST</span><h3>Against closed grammar</h3></div><span class="chart-unit">percentage points</span></div>
+                    <div id="transfer-comparison-list"></div>
+                    <p class="subtle-note">Each arm gets a fresh matched population and the same example pairs; only acquired snippets or active opcodes carry across.</p>
+                  </div>
+                </div>
+                <div class="panel table-panel">
+                  <div class="chart-head"><div><span class="panel-kicker">ARM SUMMARY</span><h3>What changed?</h3></div></div>
+                  <div class="table-scroll" id="summary-table"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-commons" aria-labelledby="commons-title" hidden>
+          <div class="page-heading compact-heading">
+            <div><div class="eyebrow"><span class="eyebrow-mark"></span> MECHANISM / 02</div><h1 id="commons-title">Opcode commons</h1><p class="lede">Trace each published operation from discovery through reuse and expiry. A certificate here is an exhaustive check over 16 × 16 toy inputs.</p></div>
+            <div class="heading-index"><span>FINITE DOMAIN</span><strong>4-BIT × 2</strong></div>
+          </div>
+          <div class="panel commons-intro">
+            <div class="commons-symbol" aria-hidden="true">⊕<span>→</span>OP</div>
+            <div><span class="panel-kicker">ADMISSION RULE</span><h2>Evidence changes the instruction set.</h2><p>In the ratified arm, an expression fragment must appear in top programs that each descend from a single, distinct founder lineage, across two task families. Its complete input-output table is enumerated before publication. Unused opcodes age out after two task epochs.</p></div>
+          </div>
+          <div class="panel table-panel">
+            <div class="chart-head"><div><span class="panel-kicker">CURRENT RUN</span><h3>Published instruction events</h3></div><span class="chart-unit" id="commons-count">NO STUDY LOADED</span></div>
+            <div id="commons-table" class="table-scroll"></div>
+          </div>
+          <div class="panel table-panel" style="margin-top:14px">
+            <div class="chart-head"><div><span class="panel-kicker">ADMISSION TRACE</span><h3>Opcode gate surveys</h3></div><span class="chart-unit" id="gate-count">NO STUDY LOADED</span></div>
+            <div id="gate-table" class="table-scroll"></div>
+          </div>
+          <div class="panel certificate-panel">
+            <div><span class="panel-kicker">CERTIFICATE FORMAT</span><h3>Exactness is bounded by the toy machine.</h3></div>
+            <code>signature = f(0,0)…f(0,15), f(1,0)…f(15,15)</code>
+            <p>One hexadecimal output is stored for every pair. The digest is a compact label only; it is not cryptographic. This checks semantic identity inside the simulated 4-bit machine, not correctness in the outside world.</p>
+          </div>
+        </section>
+
+        <section class="view" id="view-ledger" aria-labelledby="ledger-title" hidden>
+          <div class="page-heading compact-heading">
+            <div><div class="eyebrow"><span class="eyebrow-mark"></span> RECEIPTS / 03</div><h1 id="ledger-title">Run ledger</h1><p class="lede">Browser-local records preserve configuration, paired seeds, task schedules, observations, mutations, and failures.</p></div>
+            <div class="heading-index"><span>STORAGE</span><strong>LOCAL</strong></div>
+          </div>
+          <div class="panel table-panel">
+            <div class="chart-head"><div><span class="panel-kicker">SAVED STUDIES</span><h3>Recent experiment receipts</h3></div><button id="clear-ledger" class="secondary-button" type="button">Clear local ledger</button></div>
+            <div id="ledger-table" class="table-scroll"></div>
+          </div>
+          <p class="subtle-note ledger-footnote">The ledger is saved in this browser's local storage. Export important receipts if you need to move or archive them.</p>
+        </section>
+
+        <section class="view" id="view-protocol" aria-labelledby="protocol-title" hidden>
+          <div class="page-heading compact-heading">
+            <div><div class="eyebrow"><span class="eyebrow-mark"></span> METHODS / 04</div><h1 id="protocol-title">Protocol &amp; limits</h1><p class="lede">An inspectable synthetic experiment for studying how reusable computational instructions form and travel.</p></div>
+            <div class="heading-index"><span>PROTOCOL</span><strong>TC—001</strong></div>
+          </div>
+          <div class="protocol-grid">
+            <article class="panel protocol-article">
+              <span class="panel-kicker">RESEARCH QUESTION</span>
+              <h2>Does social ratification make discovered functions more useful?</h2>
+              <p>Each world evolves a population of tiny expression trees to reproduce a sequence of deterministic nibble transformations. All arms receive the same target schedule and training examples for each paired seed. Each arm starts from the same population and uses a seeded local search stream.</p>
+              <h3>Four comparison arms</h3>
+              <ol class="protocol-list">
+                <li><strong>Closed grammar.</strong> Programs mutate and recombine within their own lineage; no shared artifacts enter the grammar.</li>
+                <li><strong>Snippet relay.</strong> High-ranking programs contribute raw expression fragments to a shared mutation pool.</li>
+                <li><strong>One-lineage opcodes.</strong> A fragment's exact 256-entry function table becomes a callable instruction after one lineage exposes it.</li>
+                <li><strong>Ratified opcode commons.</strong> Publication additionally requires single-founder program lineages that are distinct from one another, plus observations in two task families. Inactive operations expire after two epochs.</li>
+              </ol>
+              <h3>Task world</h3>
+              <p>The machine has two 4-bit inputs and a small primitive set: bitwise XOR, AND, OR, modular addition and subtraction, rotate-left, rotate-right, and complement. Five acquisition target expressions reuse motifs in different contexts. Training examples are sampled from the 256 possible input pairs; acquisition accuracy is scored on the full table.</p>
+              <h3>Frozen composition transfer</h3>
+              <p>After acquisition, each arm freezes its learned vocabulary, discards its trained population, and starts each of eight public held-out compositions with the same fresh population and sampled examples. The arms receive the same population-by-generation search slots; publication and expiry are disabled. Exact accuracy is scored over all 256 pairs. This is few-shot adaptation to new target structures in the same DSL, not zero-shot transfer, a secret benchmark, or a different interpreter.</p>
+              <h3>Outcomes and ablations</h3>
+              <p>Search uses exact training accuracy plus a smaller per-bit agreement signal and an expression-size penalty. The primary outcome is paired mean exact accuracy on the eight frozen composition tasks; acquisition accuracy on familiar targets is reported separately. Other measures include exact-task rate, generations to an exact solution, effective and expanded program size, population diversity, opcode reuse, publication, and expiry.</p>
+              <h3>Interpretation boundary</h3>
+              <p>This is a finite symbolic toy world. Full truth-table enumeration is exact for its 4-bit machine. Results do not establish general program synthesis, open-ended evolution, biological memory, consciousness, or real-world code reliability. A learned opcode is a named function table, not a new mathematical function. A positive result is evidence only about this benchmark and its specified search process.</p>
+              <h3>Reproducibility</h3>
+              <p>The engine uses a local deterministic PRNG. The v2 JSON receipt records both task manifests, exact sampled pairs, initial-population digests, acquired vocabularies, per-task metrics, and opcode events. The phase-labeled CSV is for downstream analysis. Paired-seed bootstrap intervals describe only these simulated replications.</p>
+            </article>
+            <aside class="protocol-aside">
+              <div class="panel side-stat"><span class="panel-kicker">INDEPENDENT VARIABLE</span><strong>Artifact admission policy</strong><p>Closed · fragment relay · one lineage · ratified</p></div>
+              <div class="panel side-stat"><span class="panel-kicker">PRIMARY OUTCOME</span><strong>Unseen composition score</strong><p>Mean exact fraction across eight new target structures after equal-slot few-shot search.</p></div>
+              <div class="panel side-stat"><span class="panel-kicker">FAILURE CONDITION</span><strong>No robust lift</strong><p>Ratified sharing fails if its paired accuracy is not higher, or if gains depend on one seed or collapse diversity.</p></div>
+              <div class="panel side-stat"><span class="panel-kicker">COMPUTE BUDGET</span><strong>Browser / CPU</strong><p>No account, model, GPU, remote service, or package install required.</p></div>
+              <div class="panel side-stat"><span class="panel-kicker">NOVELTY STATUS</span><strong>Research hypothesis</strong><p>Program libraries and automatic function definition are established prior art. The proposed combination is a ratified, expiring opcode commons in a paired evolutionary experiment.</p></div>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <noscript><div class="noscript-note">Tessera Lab needs JavaScript enabled to run its local experiment.</div></noscript>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

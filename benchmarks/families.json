@@ -1,0 +1,35 @@
+{
+  "benchmark_id": "tessera-four-bit-reused-motifs-v1",
+  "input_domain": {
+    "variables": ["x", "y"],
+    "values": "unsigned 4-bit integers 0..15",
+    "pair_count": 256
+  },
+  "primitive_operations": [
+    "xor",
+    "and",
+    "or",
+    "add-mod-16",
+    "subtract-mod-16",
+    "rotate-left-one",
+    "rotate-right-one",
+    "complement-4-bit"
+  ],
+  "shared_motifs": {
+    "knot": "xor(x, rotate-left-one(y))",
+    "braid": "add-mod-16(knot, y)"
+  },
+  "tasks": [
+    {"id": "T-01", "family": "wake", "target": "rotate-left-one(braid)"},
+    {"id": "T-02", "family": "mask", "target": "xor(braid, complement-4-bit(x))"},
+    {"id": "T-03", "family": "turn", "target": "and(rotate-left-one(knot), add-mod-16(x,y))"},
+    {"id": "T-04", "family": "braid", "target": "xor(braid,knot)"},
+    {"id": "T-05", "family": "cross", "target": "rotate-left-one(xor(braid,knot))"}
+  ],
+  "evaluation": {
+    "training_examples": "seeded sample without replacement from all 256 input pairs",
+    "acquisition_score": "exact fraction matched over the complete 256-pair function table for each acquisition task",
+    "task_schedule": "seeded shuffle without replacement for acquisition epochs",
+    "transfer_suite": "tessera-composition-holdout-v1; see transfer-suite-v1.json"
+  }
+}

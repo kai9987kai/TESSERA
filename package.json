@@ -1,0 +1,14 @@
+{
+  "name": "tessera-opcode-commons-lab",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "A deterministic local experiment on the emergence and governance of shared program instructions.",
+  "scripts": {
+    "test": "node --test",
+    "study": "node cli/run-study.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
